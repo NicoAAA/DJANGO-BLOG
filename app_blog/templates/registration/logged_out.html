@@ -1,0 +1,24 @@
+<!-- templates/registration/logged_out.html -->
+
+{% extends "base.html" %}
+
+{% comment %} 
+
+    Plantilla html que contiene el mensaje de log OUT de la pagina web, en caso de que 
+    el usuario cierre sus sesion se mostrara el siguentre mensaje en pantalla:
+         
+        "Gracias por su visita!" 
+
+ {% endcomment %}
+
+{% block content %}
+    <h2>LOG OUT<h2>
+    <h3> Gracias por su visita!</h3>
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">LOG OUT</button>
+    </form>
+
+{% endblock content %}
+

@@ -1,0 +1,171 @@
+<!-- templates/base.html -->
+
+
+{% comment %} 
+SENA CBA CENTRO DE BIOTECNOLOGIA AGROPECUARIA
+PROGRAMACION DE SOFTWARE
+
+FICHA: 2877795
+AUTOR: NICOLAS ANDRES ACOSTA HIGUERA
+PROYECTO: DJANGO BLOG (templates/base.html)
+FECHA: 2024-08-01
+VERSION: 4.5.6 
+ 
+
+    Archivo base principal, que contiene:
+
+    El titulo y barra de navegacion con sus respectivos botones de log IN y sing UP,mostrando tambien 
+    cuando se inicie secion, el nombre de Usuario la persona que ha iniciado secion (esta parte sera 
+    estatica en la página web). 
+
+    Luego le sigue el "block", que dependiendo de la funcionalidad y la accion que realice el usuario 
+    ira cambiado (log in,log out,base, logged_out) esta ira cambiando.
+
+    Por ultimo tenemos un footer que al igual que la barra de navegacion es estatica en toda la pagina
+    web, esta contiene un parrafo explicando algo sobre el block, links de los post de la pagina web y
+    al final de este una seccion para el copy right de la pagina web.
+
+    Este es un ejemplo básico de un primer proyecto django utilizando  los post.body,  post.imagen.url,
+    post.title utilizando elemnetos desde la base de datos, ademas se utilizo un sistema de formulario
+    (que ya viene por defecto con django),en el cual se hace un registro y se muestra cuando ese usuario
+    ha iniciado secion. 
+
+ {% endcomment %}
+
+
+
+
+{% load static %}
+<!doctype html>
+<html lang= 'es'>
+    <head>
+        <title>Dijango Blog</title>
+        <link rel="stylesheet" type= "text/css" href= {% static 'css/styles.css'%}> <!-- Estilos para archivos estaticos -->
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet"> <!-- Archivo bootstrap en archivos estaticos -->
+        
+    </head>
+    <body>
+        <!-- Barra de navegacion -->
+    
+        <nav class="navbar navbar-expand-sm navbar-dark bg-success">
+            
+            <a class="navbar-brand ps-4" href="#">DJANGO BLOG</a>
+            <button
+                class="navbar-toggler d-lg-none"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapsibleNavId"
+                aria-controls="collapsibleNavId"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            ></button>
+            <div>
+                <header>
+                    <h1 ><a class='tt bg-success' href="{% url 'home' %}">Dijango Blog</a></h1>
+                </header>
+            </div>
+            
+            <!-- Barra de Navegacion = Muestra el nombre de usuario que ha iniciado secion o si no se ha iniciado secion -->
+            <div class="collapse navbar-collapse" id="collapsibleNavId">
+                <ul class="navbar-nav w-100">
+
+
+                    {% if user.is_authenticated %}
+                        <div class= "container">
+                            <li class="nav-item">
+                                <p class="nav-link mb-0 text-center mt-3">Bienvenido {{ user.username }}!</p>
+                            </li>
+                        </div>
+                        <div>
+                            <li class="nav-item ml-auto">
+                                <p><form id='logout-form' action="{% url "logout" %}" method= "post">
+                                    {% csrf_token %}
+                                    <button class= "btn btn-danger ml-auto navbar-brand" type= "submit">LOG OUT</button>
+                                </form></p>     
+                            </li>
+                        </div>
+
+                    {% else %}
+                        <div class= "container">
+                            <li class="nav-item">
+                                <p class="nav-link mb-0 text-center">Usuario no ha iniciado sesión</p>
+                            </li>
+                        </div>
+
+                        <div>
+                            <li class="nav-item ml-auto">
+                                <p><form id="login-form" action="{% url "login" %}" method= "get">
+                                    {% csrf_token %}
+                                    <button class= "btn btn-warning navbar-brand" type="submit">LOG IN</button>
+                                </form></p> 
+                            </li>
+                        </div>
+                        <div>
+                            <li class="nav-item ml-auto">
+                                <p><form id="signup-form" action="{% url "signup" %}" method= "get">
+                                    {% csrf_token %}
+                                    <div class= 'text-center'>
+                                        <button class= "btn btn-primary ml-auto navbar-brand" type="submit">SIGN UP</button>
+                                    </div>
+                                </form></p> 
+                            </li>
+                        </div>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Block que se actializa segun la funcion a la que se acceda -->
+    
+        <div class="d-flex flex-column min-vh-100">       
+            <main >
+                {% block content %}
+                {% endblock content %}
+            </main>
+        <div>
+        
+        <!-- Footer de la pagina web -->
+        <footer class="bg-success text-light py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <h6 class="text-uppercase text-white">SOBRE ESTE BLOG</h6>
+                        <p class="text-justify">¡Hola! Soy Nicolas Acosta, un entusiasta de la programación que está dando sus primeros pasos en el mundo del desarrollo de software. Mi viaje en la programación comenzó con el deseo de aprender y crear soluciones innovadoras. En este blog, comparto mis experiencias, descubrimientos y recursos útiles que he encontrado en mi camino. Espero que encuentres inspiración y conocimientos valiosos aquí. ¡Gracias por acompañarme en esta aventura de aprendizaje</p>
+                    </div>
+        
+                    <div class="col-md-3 mb-4">
+                        <h6 class="text-uppercase text-white">Categories</h6>
+                        <ul class="list-unstyled">
+                            <li><a href="#" class="text-decoration-none text-light">FrameWork FrondEnd</a></li>
+                            <li><a href="#" class="text-decoration-none text-light">FrameWork BackEnd</a></li>
+                            <li><a href="#" class="text-decoration-none text-light">Lenguajes de programacion</a></li>
+                            
+                        </ul>
+                    </div>
+        
+                    <div class="col-md-3 mb-4">
+                        <h6 class="text-uppercase text-white">Quick Links</h6>
+                        <ul class="list-unstyled">
+                            <li><a href="#" class="text-decoration-none text-light">About Us</a></li>
+                            <li><a href="#" class="text-decoration-none text-light">Contact Us</a></li>
+                            <li><a href="#" class="text-decoration-none text-light">Contribute</a></li>
+                            <li><a href="#" class="text-decoration-none text-light">Privacy Policy</a></li>
+                            <li><a href="#" class="text-decoration-none text-light">Sitemap</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <hr class="border-secondary">
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 text-center text-md-start mb-3 mb-md-0">
+                        <p class="mb-0">&copy; 2024 All Rights Reserved by <a href="#" class="text-decoration-none text-light">Nicolas Acosta</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>
+        
+      
+

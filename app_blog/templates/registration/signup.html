@@ -1,0 +1,35 @@
+<!-- templates/registration/singup.html -->
+{% extends "base.html" %}
+
+{% comment %} 
+
+    Plantilla html que contiene el formulario de registro de la pagina web, se solicita nombre
+    usuario, contraseña y confirmacion de la contraseña, con sus respectivas indicaciones de 
+    como se debe llenar este formulario de registro. Un boton de tipo submit para enviar el 
+    registro a la base de datos.
+
+    Este archivo utilizo bootstrap para todos sus estilos.
+
+ {% endcomment %}
+ 
+
+
+{% block content %}
+    <div class="container -fluid vh-100 d-flex align-items-center justify-content-center">
+        <div class="row justify-content-center w-100">
+            <div class="col-md-4 mt-5">
+                <div class="card card-custom mb-4" style="background: rgba(255, 255, 255, 0.8);">
+                    <h2 class="text-center mb-4 mt-4">SING UP</h2>
+                    <form method='post' class="ms-4">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            {{ form.as_p}}
+                        </div>
+                        <button type="submit" class="btn btn-success mb-4 mx-auto d-block">Success</button> 
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

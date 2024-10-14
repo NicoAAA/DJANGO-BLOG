@@ -1,0 +1,35 @@
+<!-- Templates/home.html -->
+{% extends "base.html" %}
+
+{% comment %} 
+
+    Block que contiene la plantilla html del home de la pagina web, 
+    utilizando cards,dentro de un ciclo for, que muestra todos los 
+    post, cada uno con su titulo, imagen y descripcion (informacionque 
+    se encuentra en los post respectivamente dentro de la base de datos.).
+
+    Se uso bootstrap para los estilos de esta parte de la pagina web.
+
+ {% endcomment %}
+
+
+{% load static %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="row">
+            {% for post in post_list %}
+            <div class="col-md-4">
+                <div class="card mb-4" style="background: rgba(255, 255, 255, 0.8);">
+                    <img class="card-img-top" src="{{ post.imagen.url }}" alt="{{ post.title }}"><!-- Imagenes almacenadas en la base de datos-->
+                    
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="#">{{ post.title }}</a></h5> <!-- Post con el titulo almacenado en la base de datos-->
+                        <p class="card-text">{{ post.body }}</p><!-- Post con el body almacenado en la base de datos-->
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}  

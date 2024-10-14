@@ -1,0 +1,40 @@
+<!-- templates/registration/singup.html -->
+
+{% extends "base.html" %}
+
+{% comment %} 
+    Plantilla html que contiene el formulario de inicio de secion de la pagina web, se solicita nombre
+    usuario y contraseña. Un boton de tipo submit para enviar los datos digitados por el usuario a la 
+    base de datos y hacer la respectiva busqueda del usuario y contraseña digitados, si se verifica que
+    estos dos datos coinciden con algun registro en la base de datos continua, de lo contrario no permita 
+    iniciar secion.
+
+    Este archivo utilizo bootstrap para todos sus estilos.
+    
+ {% endcomment %}
+
+
+{% block content %}
+    <div class="container -fluid vh-100 d-flex align-items-center justify-content-center">
+        <div class="row justify-content-center w-100">
+            <div class="col-md-4 mt-5">
+                <div class="card card-custom mb-4" style="background: rgba(255, 255, 255, 0.8);">
+                     <h2 class="text-center mb-4 mt-4">LOG IN</h2>
+                    <form method= "post" class="ms-4">
+                            {% csrf_token %}
+                        <div class= "mb-3 " >
+                            {{form.as_p}}
+                        </div>
+                   
+                        <button type="submit" class="btn btn-success mb-4 mx-auto d-block">LOG IN</button>
+                       
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+     
+
+{% endblock content %}
+

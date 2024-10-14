@@ -1,0 +1,81 @@
+html, body {
+    height: 100%; /* Hace que el body y html ocupen toda la altura de la ventana */
+    margin: 0; /* Elimina cualquier margen por defecto */
+}
+
+
+body {
+    background-image: url(../img/Django.jpg);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column; /* Coloca el contenido en una columna */
+    min-height: 100vh; /* Asegura que el contenido ocupe al menos el 100% de la ventana */
+
+    
+}
+main {
+    flex-grow: 1; /* Hace que el main crezca para ocupar el espacio restante */
+}
+
+h1 {
+    
+    font-size: 50px;
+    text-align: center;
+    margin-top: 50px;
+    
+}
+.tt{
+    color: red;
+    font-size: 50px;
+    text-align: center;
+    margin-top: 50px;
+    font-family: 'Cascadia Code', Cascadia Code, monospace;
+    text-decoration: none;
+}
+.tt:hover {
+    color: rgb(26, 195, 37);
+}
+.post-title {
+    color: rgba(255, 255, 255, 0.719);
+    font-size: 20px;
+    font-family: 'Cascadia Code', Cascadia Code, monospace
+}
+.post-text {
+    color: rgb(29, 200, 231);
+    font-size: 16px;
+    font-family: 'Cascadia Code', Cascadia Code, monospace
+
+}
+.post-entry h2 a:hover {
+    color: rgb(39, 228, 249); /* Cambia el color cuando el enlace está en hover */
+}
+.post-entry h2 a {
+    color: rgb(29, 200, 231);
+    text-decoration: none; /* Quita el subrayado */
+    position: relative;
+    left: 50px;
+}
+.post-entry p {
+    font-size: 16px;
+    color: #f6b00e;
+    margin-top: 10px;
+    font-family: 'Cascadia Code', Cascadia Code, monospace;
+    position: relative;
+    left: 100px;
+}
+
+.cd {
+    color: rgb(9, 9, 233);
+    font-size: 20px;
+    font-family: 'Cascadia Code', Cascadia Code, monospace
+}
+
+
+.img {
+    width: 20%;
+    height: auto;
+    position: relative;
+    left: 650px;
+    top: 30px;
+}
